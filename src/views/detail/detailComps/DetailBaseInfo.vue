@@ -1,4 +1,5 @@
 <template>
+<!--判断对象的值是否为空-->
   <div v-if="Object.keys(goods).length !== 0" class="base-info">
     <div class="info-title">{{goods.title}}</div>
     <div class="info-price">
