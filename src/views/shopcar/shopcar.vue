@@ -1,39 +1,39 @@
 <template>
-<div>
-  <scroll class="content">
+  <div>
+    <!--导航-->
     <nav-bar class="nav">
-      <div slot="center">购物车({{cartLength}})</div>
+      <div slot="center">购物车({{ cartLength }})</div>
     </nav-bar>
-    <ul>
-      <Li v-for="item in $store.state.carList">{{item}}</Li>
-    </ul>
-  </scroll>
-</div>
+    <!--    商品展示-->
+    <cart-list/>
+    <!--底部的汇总-->
+
+
+  </div>
 </template>
 <script>
-import scroll from "@/components/common/scroll/scroll";
 import navBar from "@/components/common/navBar/navBar";
+import cartList from "@/views/shopcar/childcom/cartList";
 
 
 import {mapGetters} from "vuex"//vuex 内置的方法，mapgetters
 export default {
   name: "shopcar",
   components: {
-    scroll,
-    navBar
+    navBar,
+    cartList
   },
-  computed:{
+  computed: {
     ...mapGetters(['cartLength'])
   }
 }
 </script>
 
 <style scoped>
-.nav{
+.nav {
   background: #ff5777;
   color: #eeeeee;
+
 }
-.content {
-  height: calc(100% - 95px);
-}
+
 </style>

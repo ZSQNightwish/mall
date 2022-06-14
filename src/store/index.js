@@ -8,8 +8,7 @@ import getters from "./getters"
 Vue.use(Vuex)
 const state = {
   carList: []
-}
-
+};
 export default new Vuex.Store({
   state,
   getters,
