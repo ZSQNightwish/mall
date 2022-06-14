@@ -163,8 +163,11 @@ export default {
     }
   },
   activated() {
+    // 同时刷新better-scroll防止不能滚动
+    this.$refs.scroll.refresh();
   },
   deactivated() {
+
     /*取消全局事件的监听*/
     this.$bus.$off('itemImageLoad',this.itemListener)
   }
