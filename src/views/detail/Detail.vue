@@ -12,6 +12,8 @@
     </scroll>
     <deatil-bottom-bar @addClick="addClick"/>
     <back-top @click.native="backClick" v-show="isShowBckTop"/>
+
+    <toast :message="message" :show="show"/>
   </div>
 </template>
 
@@ -32,6 +34,8 @@ import {getDdatil, Goods, Shop, GoodsParam, getRecommend} from "@/network/detail
 import {debounce} from "@/common/untils";
 import {itemListenerMixin} from "@/common/mixin";
 
+import toast from "@/components/common/toast/toast";//商品添加成功弹出提示功能
+
 export default {
   name: "Detail",
   components: {
@@ -45,7 +49,8 @@ export default {
     commentInfo,
     goodsList,
     deatilBottomBar,
-    backTop
+    backTop,
+    toast
 
   },
   data() {
@@ -64,6 +69,8 @@ export default {
       getThemeY: null,
       currentIndex: 0,
       isShowBckTop: true,
+      message: '',
+      show: false
     }
   },
   created() {
@@ -176,7 +183,19 @@ export default {
       //这里同时获取商品的id，才能知道把对应的商品添加到购物车
       product.iid = this.iid
       //2.添加到购物车  首先把数据添加到 vue x共享
-      this.$store.dispatch('addClick', product)
+      //当商品被成功加入购物车，弹窗提示成功功能 成功的时候需要他来告诉我们成功了
+      // 所以就需要通过promise实现，
+      this.$store.dispatch('addClick', product).then(res => {
+        this.show = true
+        this.message = res
+        console.log(res);
+        setTimeout(() => {
+          this.show = false
+          this.message = ''
+        }, 1500)
+      })
+
+
     }
   }
 }
