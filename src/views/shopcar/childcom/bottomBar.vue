@@ -1,7 +1,9 @@
 <template>
   <div class="bottom-bar">
     <div class="checkAll">
-      <check-button/>
+      <check-button
+        :is-checked="isAll"
+        @click.native="ckeckAll"/>
       <span>全选</span>
       <span class="all">合计￥{{ totalPrice }}</span>
       <span class="pay">结算支付({{ payLegth }})</span>
@@ -31,6 +33,27 @@ export default {
     //  结算支付，后面的，选中的商品的个数
     payLegth() {
       return this.$store.state.carList.filter(item => item.checked).length
+    },
+    isAll() {
+      /*通过点击商品选中按钮，让全选按钮被选中*/
+      //判断长度是否为0， false 和 ture
+      // return !(this.$store.state.carList.filter(item => !item.checked).length)
+      if (this.$store.state.carList.length === 0) return false
+      /*使用find 性能会高一点*/
+      return !this.$store.state.carList.find(item => !item.checked)
+    }
+  },
+  methods: {
+    /*这里做的是，通过点击全选按钮，控制所有的商品被选中
+    * 两种情况 1.如果都被选中了，点击让商品不被选中，
+    *          2.如果都没有被选中，点击会，所有商品都被选中*/
+    ckeckAll() {
+      // console.log('..........');
+      if (this.isAll) {
+        this.$store.state.carList.forEach(item => item.checked = false)
+      } else {
+        this.$store.state.carList.forEach(item => item.checked = true)
+      }
     }
   }
 }
@@ -65,7 +88,7 @@ span {
 
 .pay {
   float: right;
-  width:90px;
+  width: 90px;
   margin-right: 30px;
   text-align: center;
   background-color: #ff5777;
