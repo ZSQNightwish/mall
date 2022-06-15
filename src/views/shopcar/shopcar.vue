@@ -24,6 +24,7 @@ export default {
     cartList
   },
   computed: {
+    //如果改方法用的比较多，可以封装一个getters
     ...mapGetters(['cartLength'])
   }
 }

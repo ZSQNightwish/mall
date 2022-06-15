@@ -2,10 +2,10 @@
   <div class="bottom-bar">
 
     <div class="item">
-      <i class="serve"><img src="@/assets/img/detail/serve.png" alt=""></i><span>客服</span>
+      <i class="serve"><img src="@/assets/img/detail/serve.jpg" alt=""></i><span>客服</span>
     </div>
     <div class="item">
-      <i><img src="@/assets/img/detail/shop.png" alt=""></i><span>店铺</span>
+      <i><img src="@/assets/img/detail/shop.jpg" alt=""></i><span>店铺</span>
     </div>
     <div class="item">
       <i class="collect"><img src="@/assets/img/detail/collect.png" alt=""></i><span>收藏</span>
@@ -53,8 +53,8 @@ img, span {
   margin-left: 15px;
 
 }
-
-.collect img {
+.collect img,
+.item img{
   height: 28.08px;
 }
 
