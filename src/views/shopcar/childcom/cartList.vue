@@ -13,6 +13,7 @@ import scroll from "@/components/common/scroll/scroll";
 import listItem from "@/views/shopcar/childcom/listItem";
 
 import {mapGetters} from "vuex"
+
 export default {
   name: "cartList",
   components: {
@@ -22,11 +23,11 @@ export default {
   computed: {
     //配置映射就可以获取到carlist的信息  这个叫做辅助函数
     ...mapGetters({
-      carList:'carList',
-      cartLength:'cartLength'
+      carList: 'carList',
+      cartLength: 'cartLength'
     })
-      // ...mapGetters(['carList','cartLength']) 这是第一种写法，如果方法过多可以抽出去
-     //
+    // ...mapGetters(['carList','cartLength']) 这是第一种写法，如果方法过多可以抽出去
+    //
   },
   activated() {
     this.$refs.scroll.refresh()
@@ -40,7 +41,7 @@ export default {
 }
 
 .content {
-  height: calc(100% - 95px);
+  height: calc(100% - 95px - 40px);
   overflow: hidden;
 }
 </style>

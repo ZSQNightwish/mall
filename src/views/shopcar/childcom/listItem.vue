@@ -32,6 +32,7 @@ export default {
   },
   methods: {
     BtnClick() {
+      //mutatiions上模型的数据，chenked=true，修改数据，
       this.product.checked = !this.product.checked
       console.log('..............');
     }
